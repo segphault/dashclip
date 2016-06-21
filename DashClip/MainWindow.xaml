@@ -1,0 +1,32 @@
+﻿<Window x:Class="DashClip.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DashClip"
+        mc:Ignorable="d"
+        Title="DashClip" Height="350" Width="525" Icon="resources/clip.ico" StateChanged="onStateChanged">
+    <DockPanel>
+        <DockPanel DockPanel.Dock="Top" Background="#FFEEEEEE">
+            <Image x:Name="image" Source="resources/search32.png" Stretch="None" Margin="10,0,0,0"  />
+            <TextBox x:Name="textSearch" DockPanel.Dock="Right" Margin="0" FontSize="24" Padding="10" BorderThickness="0" Background="#FFEEEEEE" TextChanged="onSearchChanged" />
+        </DockPanel>
+        <ListBox x:Name="listResults" Margin="0" HorizontalContentAlignment="Stretch" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Padding="0" BorderThickness="0" MouseDoubleClick="onResultDoubleClick">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <DockPanel Margin="5">
+                        <Image Margin="0,0,10,0" Stretch="None" Source="{Binding Icon}"/>
+                        <StackPanel>
+                            <DockPanel>
+                                <TextBlock Text="{Binding App, TargetNullValue='Unknown App'}" FontSize="16" Foreground="#FF727272" Margin="0,0,0,5" />
+                                <TextBlock Text="{Binding FormattedTimestamp}" Foreground="#FF727272" Margin="0,0,0,5" HorizontalAlignment="Right" VerticalAlignment="Bottom" />
+                            </DockPanel>
+                            <TextBlock TextTrimming="CharacterEllipsis" Text="{Binding Preview}" Foreground="#FF3B4452" FontSize="14" />
+                            <Image Source="{Binding Image}" />
+                        </StackPanel>
+                    </DockPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+    </DockPanel>
+</Window>
